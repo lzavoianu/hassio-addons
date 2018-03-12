@@ -5,6 +5,33 @@ ARG BUILD_ARCH
 
 ENV LANG C.UTF-8
 ENV SNAPCAST_VERSION 0.11.1
+
+#Install shairport-sync
+RUN apt-get update && apt-get install -y \
+   git \
+   build-essential \
+   autoconf \
+   automake \
+   libtool \
+   libdaemon-dev \
+   libasound2-dev \
+   libpopt-dev \
+   libconfig-dev \
+   avahi-daemon \
+   libavahi-client-dev \
+   libssl-dev
+   
+   RUN git clone https://github.com/mikebrady/shairport-sync.git
+WORKDIR shairport-sync
+RUN autoreconf -i -f
+RUN ./configure --with-alsa --with-avahi --with-ssl=openssl --with-systemd --sysconfdir=/etc
+
+RUN make
+RUN make install
+
+RUN sed -i 's/rlimit-nproc=3//' /etc/avahi/avahi-daemon.conf
+
+
 #Install snapcast-server
 RUN set -ex \
     # Official Mopidy install for Debian/Ubuntu along with some extensions
