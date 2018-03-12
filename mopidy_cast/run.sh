@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -e
 
 local_scan=$(cat /data/options.json | jq -r '.local_scan // empty')
@@ -11,3 +12,8 @@ if  [ "$local_scan" == "true" ]; then
     mopidy --config $config $options local scan
 fi
 mopidy --config $config $options
+
+service dbus start
+service avahi-daemon start
+
+shairport-sync
