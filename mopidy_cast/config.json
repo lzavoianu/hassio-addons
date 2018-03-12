@@ -6,7 +6,7 @@
     "url": "https://github.com/lzavoianu/hassio-addons/tree/master/mopidy_cast",
     "startup": "application",
     "boot": "auto",
-    "image": "lzavoianu/{arch}-mopidy-cast",
+    "image": "bestlibre/{arch}-mopidy-cast",
     "options": {"local_scan": true,
 	        "options": []},
     "schema": {
