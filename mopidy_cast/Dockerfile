@@ -1,12 +1,9 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
-
-ARG BUILD_ARCH
-
-ENV LANG C.UTF-8
-ENV SNAPCAST_VERSION 0.11.1
 
 #Install shairport-sync
+
+FROM resin/rpi-raspbian
+
+MAINTAINER Evan Salter <evanearlsalter@gmail.com>
 RUN apt-get update && apt-get install -y \
    git \
    build-essential \
@@ -32,7 +29,17 @@ RUN make install
 RUN sed -i 's/rlimit-nproc=3//' /etc/avahi/avahi-daemon.conf
 
 
+ARG BUILD_FROM
+FROM $BUILD_FROM
+
+ARG BUILD_ARCH
+
+ENV LANG C.UTF-8
+ENV SNAPCAST_VERSION 0.11.1
+
+
 #Install snapcast-server
+
 RUN set -ex \
     # Official Mopidy install for Debian/Ubuntu along with some extensions
     # (see https://docs.mopidy.com/en/latest/installation/debian/ )
