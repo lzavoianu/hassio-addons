@@ -1,9 +1,9 @@
 {
-    "name": "Mopidy and Snapcast",
+    "name": "Mopidy and Snapcast My Version",
     "version": "0.2.3",
-    "slug": "mopidy-cast",
+    "slug": "mopidy-cast 2",
     "description": "mopidy music server with snapcast server",
-    "url": "https://github.com/bestlibre/hassio-addons/tree/master/mopidy_cast",
+    "url": "https://github.com/lzavoianu/hassio-addons/tree/master/mopidy_cast",
     "startup": "application",
     "boot": "auto",
     "image": "bestlibre/{arch}-mopidy-cast",
